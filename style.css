@@ -1,0 +1,674 @@
+/* Code created by Dylan Gibbons for COMP1054 */
+
+/* Importing Limelight from Google Fonts for the h1 element via CSS instead of HTML */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Limelight&display=swap');
+
+/* Resetting margins and padding and setting box-sizing to border-box for all elements so that
+padding and margins are taken into account for overall size */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Update git test */
+/* body styles (I thought arial looked fine actually. I could have used poppins instead, 
+but I didn't think it actually made it look better and I already imported something to show I could 
+do it for the h1*/
+body {
+    font-family: 'Arial Black', Arial, sans-serif;
+    background: #171c24;
+    color: #FAF9F6;
+    padding-top: 64px;
+    /* min-height set to the full viewport for the body  */
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+/* Styling the nav bar. I use position fixed so it always stays at the top and a z-index of 100 so it's always
+above other elements. */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #181d28;
+    z-index: 100;
+    /* While the box shadow isn't that visible, i think it still smooths out
+    the transition between the nav and the rest of the content */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    padding: 0.5rem 0;
+}
+
+/* For the nav menu list, I use display flex to organize the elements to make it more responsive
+ and horizontally aligned by default */
+nav ul {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    justify-content: center;
+    align-items: center;
+    /* getting rid of dots */
+    list-style: none;
+    /* max-width 1200 pixels */
+    max-width: 1200px;
+    margin: 0 auto;
+    /* I tried to use rem as much as possible. The gap gets changed via media queries later */
+    gap: 2rem;
+    padding: 0 1rem;
+}
+
+
+/* styling the links within the navigation, setting color, removing decoration, and setting font properties */
+nav a {
+    color: #FAF9F6;
+    text-decoration: none;
+    /* Making all the menu title uppercase and bold */
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    /* You can't really see the box radius until the hover/focus effect takes place, but it does help to make
+    them look more like buttons */
+    border-radius: 4px;
+    transition: background 0.2s, color 0.2s;
+}
+
+/* decided to add a few hover effects to make them look like buttons when they're hovered over or in focus*/
+nav a:hover,
+nav a:focus {
+    color: #FAF9F6;
+    background: #ec1d24;
+}
+
+/* Styling the header with background image, size, position, relative positioning, padding, text alignment, and border */
+header {
+    /* Importing a background image for the header */
+    background-image: url('background-1.jpg');
+    /* using cover to resize it and centring it */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    padding: 2.2rem 0 1.2rem 0;
+    text-align: center;
+    /* A bit of added flare at the bottom */
+    border-bottom: 4px solid #ec1d24;
+}
+
+/* Creating a pseudo-element to overlay a gradient for the header using ::before like in class*/
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* gradient */
+    background-color: rgba(35, 43, 58, 0.7);
+}
+
+/* Styling the container within the header */
+header .container {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Styling the h1 element using the imported google font and making it pop */
+header h1 {
+    font-family: 'Limelight', cursive;
+    font-size: 8rem;
+    color: #FAF9F6;
+    letter-spacing: 2px;
+    margin-bottom: 0.3rem;
+    text-shadow: 2px 2px 0 #ec1d24;
+}
+
+/* h2, p, and a styling for the header */
+header h2 {
+    font-size: 1.3rem;
+    color: #FAF9F6;
+    margin-bottom: 0.8rem;
+    font-weight: normal;
+}
+
+/* multiple element selector list */
+header p,
+header a {
+    color: #FAF9F6;
+    font-size: 1rem;
+}
+
+/* further styling the the link elements (not including p) within the header */
+header a {
+    color: #FAF9F6;
+    /* again adding a border at the bottom */
+    border-bottom: 1px solid #ec1d24;
+    transition: color 0.2s;
+}
+
+/* More hover effects for the link elements' font */
+header a:hover {
+    color: #ec1d24;
+}
+
+/* Styling the first GitHub link in the header, adding margin to the top (had to be first of type to
+avoid styling the one in the footer) */
+header a.link-github:first-of-type {
+    margin-top: 5px;
+}
+
+/* Styling both of the gitHub links */
+.link-github {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.7rem;
+    border: 1px solid #ec1d24;
+    border-radius: 4px;
+    background: #232b3a;
+    color: #ec1d24;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    /* definining multiple transition effects to specify changes to colours*/
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+/* Styling the the SVG within the GitHub link as it was massive before */
+.link-github svg {
+    width: 1em;
+    height: 1em;
+    /* using fill current color so the svg inherits the css color */
+    fill: currentColor;
+}
+
+/* more hover/focus effects for the GitHub linkr */
+.link-github:hover,
+.link-github:focus {
+    background: #ec1d24;
+    color: #FAF9F6;
+    border-color: #FAF9F6;
+    text-decoration: none;
+}
+
+/* Styling the main containers within the main content */
+main .container {
+    /* max width 100px less than the nav menu */
+    max-width: 1100px;
+    margin: 2rem auto 2.5rem auto;
+    padding: 0 1.5rem;
+    /* using display flex and changing the direction to column */
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+}
+
+/* removing the bottom margin for the article */
+article {
+    margin-bottom: 0;
+}
+
+/* Styling the article and footer (trying to merge stuff to reduce redundancy)*/
+article,
+footer#files {
+    background: #232b3a;
+    border-radius: 10px;
+    border: 2px solid #ec1d24;
+    padding: 1.2rem 1.4rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Again, grouping selectors to reduce redundancy for basic styling */
+article h2,
+article h3,
+footer#files h3 {
+    color: #ec1d24;
+    margin-bottom: 0.4rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+article p,
+article ul,
+article ol,
+article blockquote {
+    margin-bottom: 0.4rem;
+    line-height: 1.5;
+}
+
+article ul,
+article ol {
+    padding-left: 1.1rem;
+}
+
+/* I wanted the blockquote to stand out a bit, so the font and background colours are different */
+blockquote {
+    border-left: 4px solid #ec1d24;
+    padding-left: 0.7rem;
+    color: #ccc;
+    background: #181d28;
+    margin: 0.4rem 0;
+}
+
+/* about section list */
+#about ul {
+    /* using grid to split up the list into two columns */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.1rem 1.5rem;
+    padding-left: 1.1rem;
+    margin: 0.6rem 0;
+    /* decided to play with the dots for this particular list instead of getting rid of them */
+    list-style: disc inside;
+}
+
+/* styling the list items within the about section */
+#about li {
+    break-inside: avoid;
+    padding: 0.15rem 0;
+}
+
+/* Styling the profile aside */
+.profile {
+    background: #232b3a;
+    /* I decided to go with border left and alter the radius to really make it stand out as it's own section
+    I had originally thought of actually making it go to the right of the page, but I thought it disrupted
+    the pages flow */
+    border-left: 6px solid #ec1d24;
+    margin: 1.8rem auto 2rem auto;
+    max-width: 1055px;
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    margin-left: auto;
+    margin-right: auto;
+    /* box shadow to make it stand out just a little bit more */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+
+/* Styling the h4 element within the profile */
+.profile h4 {
+    color: #ec1d24;
+    margin-bottom: 0.4rem;
+}
+
+/* Styling the unordered list within the profile */
+.profile ul {
+    /* getting rid of the dots in this instance */
+    list-style: none;
+    padding: 0;
+    margin-bottom: 0.4rem;
+}
+
+/* Styling the list items */
+.profile li {
+    margin-bottom: 0.2rem;
+    color: #FAF9F6;
+}
+
+/* Styling the link elements*/
+.profile a {
+    color: #ec1d24;
+}
+
+/* styling the link elements within the profile on hover, changing the text color */
+.profile a:hover {
+    color: #FAF9F6;
+}
+
+
+
+/* styling the featured styles section, setting background, border, and margin */
+#styles {
+    background: #181d28;
+    border-top: 3px solid #ec1d24;
+    margin: 1.8rem 0 0 0;
+    padding: 1.8rem 0 1rem 0;
+}
+
+/* styling the container within the styles section, setting position to relative */
+#styles .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    position: relative;
+}
+
+/* styling the h2 element within the styles section */
+#styles h2 {
+    color: #ec1d24;
+    margin-bottom: 0.8rem;
+}
+
+/* styling the featured styles list */
+.features {
+    /* getting rid of the dots */
+    list-style: none;
+    padding: 0;
+    margin-bottom: 0.4rem;
+    /* using grid-template-columns and repeat to organize everything and keep it in one column */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 0.9rem;
+}
+
+/* styling the featured styles list items and setting the background, radius, padding, border, minimum width, and text alignment */
+.features li {
+    background: #232b3a;
+    border-radius: 6px;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid #ec1d24;
+    min-width: 180px;
+    text-align: left;
+    /* using flex and flex-direction column to make the li go down and centering them */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* styling the link elements within the featured styles */
+.features a {
+    color: #FAF9F6;
+    font-weight: bold;
+    font-size: 1.05rem;
+    margin-bottom: 0.05rem;
+    transition: color 0.2s;
+}
+
+/* changing color of  link elements when hovered over */
+.features a:hover {
+    color: #ec1d24;
+}
+
+/* selecting the span element within the featured styles and making it look slightly faded and 
+smaller to differentiate each part */
+.features span:last-child {
+    font-size: 0.95em;
+    color: #bbb;
+}
+
+/* styling the "view all styles" link and aligning it to the right and at the bottom */
+.link-allstyles {
+    /* using position absolute */
+    position: absolute;
+    right: 1.5rem;
+    top: 0;
+    color: #ec1d24;
+    font-weight: bold;
+    background: none;
+    border: none;
+    text-align: right;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 0.2rem 0.4rem;
+    transition: color 0.2s;
+}
+
+/* adding a hover effect for the view all styles link */
+.link-allstyles:hover {
+    color: #FAF9F6;
+    text-decoration: underline;
+}
+
+/* styling the skip link. so it's initially off the page */
+.skip-link {
+    position: absolute;
+    left: -999px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    z-index: 200;
+    background: #ec1d24;
+    color: #FAF9F6;
+    padding: 0.5rem 1rem;
+    border-radius: 0 0 6px 6px;
+}
+
+/* styling the skip link when focused, changing position, width, height, and adding an outline */
+.skip-link:focus {
+    left: 1rem;
+    top: 1rem;
+    width: auto;
+    height: auto;
+    outline: 2px solid #FAF9F6;
+}
+
+/* styling the page footer */
+.page-footer {
+    background: #181d28;
+    padding: 0;
+    font-size: 0.95rem;
+    color: #FAF9F6;
+    border-top: 3px solid #ec1d24;
+}
+
+/* styling the container within the page footer, setting max width, margin, padding, display, and flex direction */
+.page-footer .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1.3rem 1rem;
+    /* using display flex and column again to organize content */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* styling the paragraph elements within the page foote*/
+.page-footer p {
+    margin: 0.1rem 0;
+    line-height: 1.4;
+    /* centring content */
+    text-align: center;
+}
+
+/* styling the unordered list within the page footer, setting display, flex wrap, justification, gap, margin, padding, and list style */
+.page-footer ul {
+    /* using flex and wrap to keep content on the page and organized */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+    margin: 0.1rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* styling the list items within the page footer and removing margin and padding */
+.page-footer li {
+    margin: 0;
+    padding: 0;
+}
+
+/* styling the link elements within the page footer, setting color, font size, padding, text decoration, radius, and transition */
+.page-footer a {
+    color: #ec1d24;
+    font-size: 0.97em;
+    padding: 0.18rem 0.35rem;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: color 0.2s, background 0.2s;
+}
+
+/* styling the link elements within the page footer on hover*/
+.page-footer a:hover {
+    color: #FAF9F6;
+    background: #ec1d24;
+}
+
+/* styling the last paragraph element within the page footer */
+.page-footer p:last-child {
+    color: #bbb;
+    font-size: 0.92em;
+    margin-top: 0.4rem;
+}
+
+/* styling the general link elements */
+a {
+    color: #ec1d24;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+/* styling the general link elements on hover or focus */
+a:hover,
+a:focus {
+    color: #FAF9F6;
+    text-decoration: underline;
+}
+
+/* styling the container within the source files footer */
+footer#files .container {
+    /* using flex and adding a gap for the files */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    justify-content: center;
+}
+
+/* styling the link elements within the source files footer */
+footer#files a {
+    /* using inline block to ... */
+    display: inline-block;
+    margin: 0;
+    padding: 0.4rem 0.9rem;
+    border: 1px solid #ec1d24;
+    border-radius: 4px;
+}
+
+/* Media query for screens smaller than 1100px */
+@media (max-width: 1100px) {
+
+    /* styling the container within the main content and featured styles, setting max width and padding */
+    main .container,
+    #styles .container {
+        max-width: 98vw;
+        padding: 0 1vw;
+    }
+    header h1 {
+        font-size: 4rem;
+    }
+
+}
+
+/* Media query for screens smaller than 900px */
+@media (max-width: 900px) {
+
+    header{
+        margin-top: 50px;
+    }
+    /* styling the unordered list within the navigation, setting gap */
+    nav ul {
+        gap: 1.2rem;
+    }
+
+    /* styling the container within the main content and featured styles, setting padding and gap */
+    main .container,
+    #styles .container {
+        padding: 0 0.5rem;
+        gap: 0.8rem;
+    }
+
+    /* styling the profile aside, setting max width and padding */
+    .profile {
+        max-width: 100%;
+        padding: 0.9rem 0.6rem;
+    }
+
+    /* styling the featured styles list, setting grid properties */
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    /* styling the unordered list within the about section */
+    #about ul {
+        grid-template-columns: 1fr;
+    }
+
+    /* styling the "view all styles" link */
+    .link-allstyles {
+        position: static;
+        display: block;
+        text-align: right;
+        margin: 0.8rem 0 0 auto;
+    }
+}
+
+/* Media query for screens smaller than 768px */
+@media (max-width: 768px) {
+
+    /* styling the unordered list within the navigation */
+
+    nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        background:#171c24;
+        justify-content: center;
+    }
+
+    /* styling the link elements within the navigation */
+    nav a {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+        white-space: nowrap;
+        display: inline-block;
+    }
+
+    nav ul li a{
+        font-size: 3vw;
+    }
+}
+
+/* Media query for screens smaller than 600px */
+@media (max-width: 600px) {
+
+    /* styling the unordered list within the navigation */
+    nav ul {
+        gap: 0.7rem;
+        font-size: 0.9rem;
+        flex-wrap: wrap;
+    }
+
+    /* styling the header */
+    header {
+        padding: 1rem 0 0.5rem 0;
+    }
+
+    /* changing font size for the h1*/
+    header h1 {
+        font-size: 3rem;
+    }
+
+    /* styling the h2 element within the header */
+    header h2 {
+        font-size: 1.1rem;
+    }
+
+    /* styling the profile aside, setting padding */
+    .profile {
+        padding: 0.5rem;
+    }
+
+    /* styling the container within the page footer, setting padding and gap */
+    .page-footer .container {
+        padding: 0.9rem 0.4rem;
+        gap: 0.4rem;
+    }
+
+ gap */
+    .features {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    /* styling the unordered list within the about section, makign it a column and removing gap */
+    #about ul {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}
